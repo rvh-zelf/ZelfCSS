@@ -1,6 +1,20 @@
 
 // Image
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
+// From Harry Roberts of CSS Wizardry
+// https://csswizardry.com/
+//
+// The Ultimate Low-Quality Image Placeholder Technique: 
+// https://csswizardry.com/2023/09/the-ultimate-lqip-lcp-technique/
+//
+//Full explaination by Kevin Powell
+//https://www.youtube.com/watch?v=345V2MU3E_w
 
 img
   max-width: 100%
+  height: auto
+  vertical-align: middle //instead of display:block
+  font-style: italic //failsafe for img alt
+  background-repeat: no-repeat //For low-quality image placeholders
+  background-size: cover
+  shape-margin: 0.75rem //useful for image shapes. Remove if not needed
