@@ -1,25 +1,33 @@
+// ===================================================
+// ZelfCSS Colour Tokens
+// ===================================================
 
-// Color Variables
-// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// Surface / Neutral scale
 $color-dark: #09090b !default
 $color-light: #fafafa !default
-$color-grey-light: #e2e2e2 !default
+$color-grey-lightest: #f4f5f6 !default
+$color-grey-light: #e5e7eb !default
 $color-grey: #a1a1a9 !default
-$color-grey-dark: #27272a !default
-$color-border: #e5e7eb !default
+$color-grey-dark: #52525b !default
+$color-grey-darkest: #27272a !default
 
-// Alerts
-// ––––––––––––––––––––––––––––––––––––––––––––––––––
-$color-success: rgb(50, 210, 150) !default
-$color-info: rgb(30, 135, 240) !default
-$color-warning: rgb(250, 160, 90) !default
-$color-danger: rgb(240, 80, 110) !default
+// Semantic colour roles
+$color-text: $color-grey-darkest !default
+$color-text-muted: $color-grey-dark !default
+$color-background: $color-light !default
+$color-border: $color-grey-light !default
+$color-border-focus: $color-dark !default
 
-//TO BE DEPRECATED: Colours will change soon
-// ––––––––––––––––––––––––––––––––––––––––––––––––––
-$color-initial: #fff !default
-$color-primary: #9b4dca !default
-$color-secondary: #606c76 !default
-$color-tertiary: #f4f5f6 !default
-$color-quaternary: #d1d1d1 !default
-$color-quinary: #e1e1e1 !default
+// Interactive
+$color-interactive: #2563eb !default       // blue — replaces Milligram purple
+$color-interactive-hover: #1d4ed8 !default
+$color-interactive-text: #fafafa !default
+
+// Alert semantic colours
+$color-success: #16a34a !default
+$color-info: #2563eb !default
+$color-warning: #d97706 !default
+$color-danger: #dc2626 !default
+
+// Alert backgrounds (10% tint — computed at render time)
+// Used in _Alert.sass with rgba()

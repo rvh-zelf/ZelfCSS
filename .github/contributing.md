@@ -1,8 +1,8 @@
 # Contributing
 
-We would love for you to contribute to Milligram and help us make this even better! Start reading this document to see it is not difficult as you might have imagined.
+We would love for you to contribute to ZelfCSS and help us make this even better! Start reading this document to see it is not difficult as you might have imagined.
 
-_Note: For issues relating to the site, please use the [milligram/milligram.github.io](https://github.com/milligram/milligram.github.io)_
+_Note: For issues relating to the site, please use the [rvh-zelf/ZelfCSS.github.io](https://github.com/rvh-zelf/ZelfCSS.github.io)_
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ To submit a new feature, make sure that changes are done to the source code. [Fo
 
 Try to solve a problem for each pull request, this increases the chances of acceptance. When in doubt, open a [new issue](#open-an-issue) so we can answer you. Look existing issues for ideas or to see if a similar issue has already been submitted.
 
-1. Fork the Github repo: `git clone https://github.com/milligram/milligram.git`
+1. Fork the Github repo: `git clone https://github.com/rvh-zelf/ZelfCSS.git`
 1. Create a new branch: `git checkout -b issuenumber-feature-name`
 1. Commit your changes: `git commit -m 'issuenumber-feature-name'`
 1. Push to the branch: `git push origin my-feature-name`
@@ -32,15 +32,15 @@ Try to solve a problem for each pull request, this increases the chances of acce
 
 ## Building
 
-First install [Node.js](https://nodejs.org/en/download/) for the build process. Now install all the dependencies, run `npm install` from the project directory. Once you have the dependencies installed, run `npm start`. This will run the build task which compiles the Sass files into Milligram.css file in the expanded and compressed version.
+First install [Node.js](https://nodejs.org/en/download/) for the build process. Now install all the dependencies, run `npm install` from the project directory. Once you have the dependencies installed, run `npm start`. This will run the build task which compiles the Sass files into zelfcss.css file in the expanded and compressed version.
 
 You can do all of this from your browser using Gitpod, the free online dev environment.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/milligram/milligram)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rvh-zelf/ZelfCSS)
 
 ## Style Guide
 
-Milligram use [Sass](http://sass-lang.com/) to give super powers to CSS. Look at how the code is being maintained, we must always be consistent. We try to follow best practices as much as possible. In addition, here are some tips you should follow:
+ZelfCSS uses [Sass](http://sass-lang.com/) to give super powers to CSS. Look at how the code is being maintained, we must always be consistent. We try to follow best practices as much as possible. In addition, here are some tips you should follow:
 
 - Properties and selectors are sorted in alphabetical order
 - Always use tab to indentation, no spaces
@@ -81,11 +81,11 @@ _Note: This style guide was inspired by [Idiomatic.css](https://github.com/necol
 
 ## Test
 
-Breaking CSS is easy. Checking every responsive page element is hard. That's why Milligram uses automated visual regression testing for responsive web UI by comparing DOM screenshots at various viewport sizes. To view the comparison run `npm run visual-regression` after making changes to the source code.
+Breaking CSS is easy. Checking every responsive page element is hard. That's why ZelfCSS uses automated visual regression testing for responsive web UI by comparing DOM screenshots at various viewport sizes. To view the comparison run `npm run visual-regression` after making changes to the source code.
 
 ## Code of Conduct
 
-Help us keep Milligram open and inclusive. Please read and follow our thoughts on [Code of Conduct](http://confcodeofconduct.com/).
+Help us keep ZelfCSS open and inclusive. Please read and follow our thoughts on [Code of Conduct](http://confcodeofconduct.com/).
 
 ## License
 

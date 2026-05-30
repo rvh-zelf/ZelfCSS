@@ -1,4 +1,3 @@
-
 // Button
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 
@@ -7,10 +6,10 @@ button,
 input[type='button'],
 input[type='reset'],
 input[type='submit']
-  background-color: $color-primary
-  border: .1rem solid $color-primary
-  border-radius: .4rem
-  color: $color-initial
+  background-color: $color-interactive
+  border: .1rem solid $color-interactive
+  border-radius: $border-radius
+  color: $color-interactive-text
   cursor: pointer
   display: inline-block
   font-size: 1.1rem
@@ -26,10 +25,13 @@ input[type='submit']
 
   &:focus,
   &:hover
-    background-color: $color-secondary
-    border-color: $color-secondary
-    color: $color-initial
-    outline: 0
+    background-color: $color-interactive-hover
+    border-color: $color-interactive-hover
+    color: $color-interactive-text
+
+  &:focus
+    outline: 2px solid $color-interactive
+    outline-offset: 2px
 
   &[disabled]
     cursor: default
@@ -37,39 +39,39 @@ input[type='submit']
 
     &:focus,
     &:hover
-      background-color: $color-primary
-      border-color: $color-primary
+      background-color: $color-interactive
+      border-color: $color-interactive
 
   &.button-outline
     background-color: transparent
-    color: $color-primary
+    color: $color-interactive
 
     &:focus,
     &:hover
       background-color: transparent
-      border-color: $color-secondary
-      color: $color-secondary
+      border-color: $color-interactive-hover
+      color: $color-interactive-hover
 
     &[disabled]
 
       &:focus,
       &:hover
         border-color: inherit
-        color: $color-primary
+        color: $color-interactive
 
   &.button-clear
     background-color: transparent
     border-color: transparent
-    color: $color-primary
+    color: $color-interactive
 
     &:focus,
     &:hover
       background-color: transparent
       border-color: transparent
-      color: $color-secondary
+      color: $color-interactive-hover
 
     &[disabled]
 
       &:focus,
       &:hover
-        color: $color-primary
+        color: $color-interactive

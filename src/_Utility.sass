@@ -1,16 +1,40 @@
-
 // Utility
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 
-// Clear a float with .clearfix
-.clearfix
+// Screen-reader only — hides visually but keeps accessible to assistive tech
+.sr-only,
+.visually-hidden
+  border: 0
+  clip: rect(0, 0, 0, 0)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  white-space: nowrap
+  width: 1px
 
-  &:after
-    clear: both
-    content: ' ' // The space content is one way to avoid an Opera bug.
-    display: table
+// Text alignment
+.text-left
+  text-align: left
 
-// Float either direction
+.text-center
+  text-align: center
+
+.text-right
+  text-align: right
+
+// Display
+.d-none
+  display: none
+
+.d-block
+  display: block
+
+.d-flex
+  display: flex
+
+// Float (legacy — prefer flexbox)
 .float-left
   float: left
 
