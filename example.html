@@ -1,408 +1,1022 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="X.R. Galdur" />
-    <meta
-      name="description"
-      content="ZelfCSS — a minimalist CSS framework forked and extended from Milligram. Styles standard HTML elements directly with sensible, accessible defaults."
-    />
-    <title>ZelfCSS | A minimalist CSS framework</title>
-    <link rel="stylesheet" href="dist/zelfcss.min.css" />
-    <style>
-      /* Demo-only styles — not part of the framework */
-      body {
-        padding: 0 1.6rem;
-      }
-      .demo-header {
-        border-bottom: 1px solid #e1e1e1;
-        margin-bottom: 4rem;
-        padding: 2.4rem 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1.6rem;
-      }
-      .demo-header h1 {
-        margin: 0;
-        font-size: 2.4rem;
-      }
-      .demo-header nav a {
-        margin-left: 1.6rem;
-        font-size: 1.4rem;
-        text-decoration: none;   /* nav links — no underline */
-      }
-      .demo-section {
-        margin-bottom: 6rem;
-      }
-      .demo-section h2 {
-        border-bottom: 2px solid #e5e7eb;
-        padding-bottom: 0.8rem;
-        margin-bottom: 2.4rem;
-      }
-      .alert {
-        border-left: 4px solid;
-        border-radius: 4px;
-        margin-bottom: 1.6rem;
-        padding: 1.2rem 1.6rem;
-      }
-      .alert-success {
-        background: #f0fdf4;
-        border-color: #16a34a;
-        color: #14532d;
-      }
-      .alert-info {
-        background: #eff6ff;
-        border-color: #2563eb;
-        color: #1e3a8a;
-      }
-      .alert-warning {
-        background: #fffbeb;
-        border-color: #d97706;
-        color: #78350f;
-      }
-      .alert-danger {
-        background: #fef2f2;
-        border-color: #dc2626;
-        color: #7f1d1d;
-      }
-      .swatch-row {
-        display: flex;
-        gap: 1.2rem;
-        flex-wrap: wrap;
-        margin-bottom: 1.6rem;
-      }
-      .swatch {
-        border-radius: 4px;
-        height: 6rem;
-        width: 10rem;
-        display: flex;
-        align-items: flex-end;
-        padding: 0.4rem 0.6rem;
-        font-size: 1.1rem;
-        font-family: monospace;
-      }
-      .demo-footer {
-        border-top: 1px solid #e1e1e1;
-        color: #999;
-        font-size: 1.3rem;
-        margin-top: 6rem;
-        padding: 2.4rem 0;
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Ruan van Heerden">
+  <meta name="description" content="Every feature of ZelfCSS demonstrated in one page — typography, grid, forms, buttons, tables, lists, code, alerts, and utilities.">
+  <title>ZelfCSS — Kitchen Sink</title>
+  <link rel="stylesheet" href="dist/zelfcss.min.css">
+  <style>
+    /* Demo scaffolding — not part of ZelfCSS */
+    body { padding: 0; }
 
-    <!-- ============================================================
-         Header
-    ============================================================ -->
-    <header class="demo-header">
+    .demo-header {
+      position: sticky;
+      top: 0;
+      background: #fafafa;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 1.2rem 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.6rem;
+      z-index: 100;
+    }
+
+    .demo-header .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .demo-header .brand span {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #a1a1a9;
+    }
+
+    .demo-header nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .demo-header nav a {
+      font-size: 1.3rem;
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      color: #52525b;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .demo-header nav a:hover {
+      color: #2563eb;
+      background: #eff6ff;
+    }
+
+    .demo-section {
+      margin-bottom: 6rem;
+      padding: 4.8rem 0 0;
+    }
+
+    .demo-section h2 {
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 0.8rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .demo-box {
+      background: #e5e7eb;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 4px;
+      font-size: 1.4rem;
+      color: #52525b;
+    }
+
+    .demo-box-blue {
+      background: #dbeafe;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 4px;
+      font-size: 1.4rem;
+      color: #1d4ed8;
+    }
+
+    .swatch-box {
+      height: 6rem;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .swatch-label {
+      font-size: 1.2rem;
+      color: #52525b;
+      text-align: center;
+    }
+
+    .swatch-hex {
+      font-size: 1.1rem;
+      color: #a1a1a9;
+      text-align: center;
+      font-family: monospace;
+    }
+
+    .swatch-col {
+      flex: 1 1 auto;
+      min-width: 10rem;
+      max-width: 14rem;
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, #eff6ff 0%, #fafafa 100%);
+      padding: 6rem 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .hero-section h1 {
+      color: #2563eb;
+      font-size: 6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-tagline {
+      font-size: 2.2rem;
+      color: #52525b;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-meta {
+      font-size: 1.4rem;
+      color: #a1a1a9;
+    }
+
+    .heading-row {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .heading-row .heading-meta {
+      font-size: 1.2rem;
+      color: #a1a1a9;
+      white-space: nowrap;
+      font-family: monospace;
+    }
+
+    .text-align-demo {
+      border: 1px solid #e5e7eb;
+      padding: 1.6rem;
+      border-radius: 4px;
+      margin-bottom: 1.2rem;
+    }
+
+    .spacing-bar {
+      height: 1.6rem;
+      background: #2563eb;
+      border-radius: 2px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .grid-demo-row {
+      margin-bottom: 2.4rem;
+    }
+
+    .demo-label {
+      font-size: 1.2rem;
+      color: #a1a1a9;
+      font-family: monospace;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .tall-box {
+      min-height: 10rem;
+    }
+
+    .short-box {
+      min-height: 4rem;
+    }
+
+    footer.demo-footer {
+      background: #09090b;
+      color: #a1a1a9;
+      padding: 4rem 0;
+      margin-top: 4rem;
+    }
+
+    footer.demo-footer a {
+      color: #e5e7eb;
+    }
+
+    footer.demo-footer .footer-brand {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fafafa;
+      margin-bottom: 0.8rem;
+    }
+
+    footer.demo-footer .footer-small {
+      font-size: 1.3rem;
+      color: #52525b;
+      margin-top: 1.6rem;
+    }
+
+    table caption {
+      font-size: 1.3rem;
+      color: #a1a1a9;
+      text-align: left;
+      margin-bottom: 0.8rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY NAV -->
+  <header class="demo-header">
+    <a class="brand" href="#hero">ZelfCSS <span>Kitchen Sink</span></a>
+    <nav>
+      <a href="#typography">Typography</a>
+      <a href="#colour">Colour</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#links">Links</a>
+      <a href="#flex-grid">Flex Grid</a>
+      <a href="#css-grid">CSS Grid</a>
+      <a href="#forms">Forms</a>
+      <a href="#tables">Tables</a>
+      <a href="#lists">Lists</a>
+      <a href="#code">Code</a>
+      <a href="#blockquote">Blockquote</a>
+      <a href="#alerts">Alerts</a>
+      <a href="#utilities">Utilities</a>
+      <a href="#spacing">Spacing</a>
+      <a class="button button-clear" href="https://github.com/rvh-zelf/ZelfCSS" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero-section" id="hero">
+    <div class="wrapper">
       <h1>ZelfCSS</h1>
-      <nav>
-        <a href="#typography">Typography</a>
-        <a href="#buttons">Buttons</a>
-        <a href="#forms">Forms</a>
-        <a href="#tables">Tables</a>
-        <a href="#grid">Grid</a>
-        <a href="#components">Components</a>
-      </nav>
-    </header>
+      <p class="hero-tagline">Everything ZelfCSS can do, on one page.</p>
+      <p>ZelfCSS is a minimalist CSS framework forked and modernised from Milligram. It styles standard HTML elements directly — no utility soup, no component bloat. This page demonstrates every feature the framework provides, from typography and forms to grid layouts and alert states.</p>
+      <p class="hero-meta">Version 2026.05.31 &middot; <a href="license">MIT Licence</a> &middot; Based on <a href="https://milligram.io/" target="_blank" rel="noopener">Milligram</a> by CJ Patoilo</p>
+    </div>
+  </div>
 
-    <main>
+  <div class="wrapper">
 
-      <!-- ============================================================
-           Typography
-      ============================================================ -->
-      <section class="demo-section" id="typography">
-        <h2>Typography</h2>
+    <!-- SECTION: TYPOGRAPHY -->
+    <section class="demo-section" id="typography">
+      <h2>Typography</h2>
+      <p>Demonstrate all six heading levels, body text behaviour, bold/strong, and the heading scale produced by ZelfCSS tokens.</p>
 
-        <h1>Heading 1 — Bold (h1)</h1>
-        <h2>Heading 2 — Bold (h2)</h2>
-        <h3>Heading 3 — Semi-bold (h3)</h3>
-        <h4>Heading 4 — Semi-bold (h4)</h4>
-        <h5>Heading 5 — Medium (h5)</h5>
-        <h6>Heading 6 — Medium (h6)</h6>
+      <h3>Heading Scale</h3>
+      <div class="heading-row">
+        <h1 style="margin:0">The quick brown fox jumps over the lazy dog</h1>
+        <span class="heading-meta">h1 &mdash; 4.6rem / 700</span>
+      </div>
+      <div class="heading-row">
+        <h2 style="margin:0;border:0;padding:0">The quick brown fox jumps over the lazy dog</h2>
+        <span class="heading-meta">h2 &mdash; 3.6rem / 700</span>
+      </div>
+      <div class="heading-row">
+        <h3 style="margin:0">The quick brown fox jumps over the lazy dog</h3>
+        <span class="heading-meta">h3 &mdash; 2.8rem / 600</span>
+      </div>
+      <div class="heading-row">
+        <h4 style="margin:0">The quick brown fox jumps over the lazy dog</h4>
+        <span class="heading-meta">h4 &mdash; 2.2rem / 600</span>
+      </div>
+      <div class="heading-row">
+        <h5 style="margin:0">The quick brown fox jumps over the lazy dog</h5>
+        <span class="heading-meta">h5 &mdash; 1.8rem / 500</span>
+      </div>
+      <div class="heading-row">
+        <h6 style="margin:0">The quick brown fox jumps over the lazy dog</h6>
+        <span class="heading-meta">h6 &mdash; 1.6rem / 500</span>
+      </div>
 
-        <p>
-          Body text uses a system font stack with <code>text-wrap: pretty</code>
-          to prevent orphaned words. ZelfCSS styles standard HTML elements
-          directly — no class names needed for the basics. <a href="#">Links are
-          underlined by default</a> for accessibility, and focus states are WCAG
-          2.2 AA compliant across all interactive elements.
-        </p>
+      <hr>
 
-        <p>
-          <strong>Strong text</strong> for emphasis,
-          <em>italicised text</em> for nuance, and
-          <small>small text</small> for fine print. You can also use
-          <del>deleted text</del> and <ins>inserted text</ins>.
-        </p>
+      <h3>Body Text</h3>
+      <p>Good typography is invisible. When a reader moves through a well-set page, they absorb the meaning without noticing the craft. ZelfCSS inherits this principle from the web's own defaults and sharpens them — sensible line heights, a balanced heading scale, and <code>text-wrap: pretty</code> to prevent the single dangling word that makes a paragraph look unfinished.</p>
+      <p>System fonts are used by default: fast, familiar, and honest. No external font load, no Flash of Invisible Text, no render-blocking stylesheet.</p>
 
-        <blockquote>
-          A minimalist framework doesn't mean fewer features — it means fewer
-          surprises. Style the elements. Trust the cascade.
-          <cite>— ZelfCSS design principle</cite>
-        </blockquote>
+      <h3>Bold &amp; Strong</h3>
+      <p>Semantically, <code>&lt;strong&gt;</code> and <code>&lt;b&gt;</code> both render as <strong>bold</strong> in ZelfCSS. Use <strong><code>&lt;strong&gt;</code></strong> when the bold carries emphasis in meaning; use <b><code>&lt;b&gt;</code></b> for stylistic weight without semantic emphasis.</p>
+    </section>
 
-        <p>Inline <code>code</code> and a code block:</p>
-        <pre><code>/* ZelfCSS — no class soup required */
-h1, h2 {
-  font-weight: 700;
-  text-wrap: balance;
-}
+    <!-- SECTION: COLOUR TOKENS -->
+    <section class="demo-section" id="colour">
+      <h2>Colour Tokens</h2>
+      <p>Visualise the full colour palette — neutral scale, semantic roles, interactive states, and alert colours.</p>
 
-p {
-  text-wrap: pretty;
-}</code></pre>
-      </section>
+      <h3>Neutral Scale</h3>
+      <div class="row row-wrap" style="gap: 1.2rem; margin-bottom: 2.4rem;">
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #09090b;"></div>
+          <p class="swatch-label">Dark</p>
+          <p class="swatch-hex">#09090b</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #27272a;"></div>
+          <p class="swatch-label">Grey — Darkest</p>
+          <p class="swatch-hex">#27272a</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #52525b;"></div>
+          <p class="swatch-label">Grey — Dark</p>
+          <p class="swatch-hex">#52525b</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #a1a1a9;"></div>
+          <p class="swatch-label">Grey</p>
+          <p class="swatch-hex">#a1a1a9</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #e5e7eb; border: 1px solid #d1d5db;"></div>
+          <p class="swatch-label">Grey — Light</p>
+          <p class="swatch-hex">#e5e7eb</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #f4f5f6; border: 1px solid #e5e7eb;"></div>
+          <p class="swatch-label">Grey — Lightest</p>
+          <p class="swatch-hex">#f4f5f6</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #fafafa; border: 1px solid #e5e7eb;"></div>
+          <p class="swatch-label">Light</p>
+          <p class="swatch-hex">#fafafa</p>
+        </div>
+      </div>
 
-      <!-- ============================================================
-           Buttons
-      ============================================================ -->
-      <section class="demo-section" id="buttons">
-        <h2>Buttons</h2>
+      <h3>Semantic Colour Roles</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Role / Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>$color-text</code></td><td>Default body text</td></tr>
+          <tr><td><code>$color-text-muted</code></td><td>Secondary / supporting text</td></tr>
+          <tr><td><code>$color-background</code></td><td>Page background</td></tr>
+          <tr><td><code>$color-border</code></td><td>Borders on inputs, dividers</td></tr>
+          <tr><td><code>$color-border-focus</code></td><td>Focus ring on inputs</td></tr>
+          <tr><td><code>$color-interactive</code></td><td>Links, primary buttons, code border</td></tr>
+          <tr><td><code>$color-interactive-hover</code></td><td>Hover state for interactive elements</td></tr>
+          <tr><td><code>$color-interactive-text</code></td><td>Text on interactive backgrounds</td></tr>
+        </tbody>
+      </table>
 
-        <p>
-          <button>Default button</button>
-          <button class="button-outline">Outline button</button>
-          <button class="button-clear">Clear button</button>
-          <button disabled>Disabled</button>
-        </p>
+      <h3>Interactive &amp; Alert Colours</h3>
+      <div class="row row-wrap" style="gap: 1.2rem; margin-bottom: 2.4rem;">
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #2563eb;"></div>
+          <p class="swatch-label">Interactive</p>
+          <p class="swatch-hex">#2563eb</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #1d4ed8;"></div>
+          <p class="swatch-label">Interactive — Hover</p>
+          <p class="swatch-hex">#1d4ed8</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #16a34a;"></div>
+          <p class="swatch-label">Success</p>
+          <p class="swatch-hex">#16a34a</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #2563eb;"></div>
+          <p class="swatch-label">Info</p>
+          <p class="swatch-hex">#2563eb</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #d97706;"></div>
+          <p class="swatch-label">Warning</p>
+          <p class="swatch-hex">#d97706</p>
+        </div>
+        <div class="swatch-col">
+          <div class="swatch-box" style="background: #dc2626;"></div>
+          <p class="swatch-label">Danger</p>
+          <p class="swatch-hex">#dc2626</p>
+        </div>
+      </div>
+    </section>
 
-        <p>
-          <a class="button" href="#">Link as button</a>
-          <a class="button button-outline" href="#">Link outline</a>
-          <a class="button button-clear" href="#">Link clear</a>
-        </p>
-      </section>
+    <!-- SECTION: BUTTONS -->
+    <section class="demo-section" id="buttons">
+      <h2>Buttons</h2>
+      <p>Show all button variants — solid, outline, clear — as native <code>&lt;button&gt;</code> elements, <code>&lt;a&gt;</code> tags with <code>.button</code>, and input types, including disabled states.</p>
 
-      <!-- ============================================================
-           Forms
-      ============================================================ -->
-      <section class="demo-section" id="forms">
-        <h2>Forms</h2>
+      <h3>Solid (Default)</h3>
+      <p>The default button uses the interactive colour token. Works on <code>&lt;button&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;input type="submit"&gt;</code>, and <code>&lt;input type="button"&gt;</code>.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.4rem;">
+        <button>Button</button>
+        <a class="button" href="#">Link Button</a>
+        <input type="submit" value="Submit Input">
+        <input type="button" value="Button Input">
+        <input type="reset" value="Reset Input">
+        <button disabled>Disabled</button>
+      </div>
 
-        <form>
+      <h3>Outline</h3>
+      <p><code>.button-outline</code> gives a transparent background with a coloured border and text. On hover, the border darkens.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.4rem;">
+        <button class="button-outline">Outline</button>
+        <a class="button button-outline" href="#">Outline Link</a>
+        <button class="button-outline" disabled>Disabled</button>
+      </div>
+
+      <h3>Clear</h3>
+      <p><code>.button-clear</code> removes the background and border entirely. Text only, coloured by the interactive token. Use for low-emphasis actions.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.4rem;">
+        <button class="button-clear">Clear</button>
+        <a class="button button-clear" href="#">Clear Link</a>
+        <button class="button-clear" disabled>Disabled</button>
+      </div>
+    </section>
+
+    <!-- SECTION: LINKS -->
+    <section class="demo-section" id="links">
+      <h2>Links</h2>
+      <p>Links are underlined by default with a 1px text-decoration-thickness and a 0.2em underline offset. On hover and focus, the underline thickens to 2px and the colour shifts to <code>$color-interactive-hover</code>. Focus-visible adds a 2px outline for keyboard navigation.</p>
+      <p>Inline link: <a href="#">Read the full documentation</a> for installation and usage details.</p>
+      <p>Another example: <a href="#">View on GitHub</a> &middot; <a href="#">Download CSS</a> &middot; <a href="#">Report an issue</a></p>
+    </section>
+
+    <!-- SECTION: FLEXBOX GRID -->
+    <section class="demo-section" id="flex-grid">
+      <h2>Flexbox Grid</h2>
+      <p>The flexbox grid uses <code>.row</code> as the flex container and <code>.column</code> as the flex child. By default, columns share space equally. Explicit widths (<code>.column-50</code>, <code>.column-33</code>, etc.) and offsets (<code>.column-offset-25</code>, etc.) are available. On mobile (below 640px), columns stack vertically. Gaps use the <code>$space-5</code> token (24px).</p>
+
+      <h3>Equal Columns</h3>
+
+      <span class="demo-label">.row with 2 equal .column</span>
+      <div class="row grid-demo-row">
+        <div class="column"><div class="demo-box">One of two</div></div>
+        <div class="column"><div class="demo-box">Two of two</div></div>
+      </div>
+
+      <span class="demo-label">.row with 3 equal .column</span>
+      <div class="row grid-demo-row">
+        <div class="column"><div class="demo-box">One of three</div></div>
+        <div class="column"><div class="demo-box">Two of three</div></div>
+        <div class="column"><div class="demo-box">Three of three</div></div>
+      </div>
+
+      <span class="demo-label">.row with 4 equal .column</span>
+      <div class="row grid-demo-row">
+        <div class="column"><div class="demo-box">One</div></div>
+        <div class="column"><div class="demo-box">Two</div></div>
+        <div class="column"><div class="demo-box">Three</div></div>
+        <div class="column"><div class="demo-box">Four</div></div>
+      </div>
+
+      <h3>Explicit Column Widths</h3>
+
+      <span class="demo-label">.column-25 + .column-75</span>
+      <div class="row grid-demo-row">
+        <div class="column column-25"><div class="demo-box-blue">Sidebar</div></div>
+        <div class="column column-75"><div class="demo-box">Main content area — wider column paired with a sidebar</div></div>
+      </div>
+
+      <span class="demo-label">.column-33 x3</span>
+      <div class="row grid-demo-row">
+        <div class="column column-33"><div class="demo-box">Feature A</div></div>
+        <div class="column column-33"><div class="demo-box">Feature B</div></div>
+        <div class="column column-34"><div class="demo-box">Feature C</div></div>
+      </div>
+
+      <h3>Column Offsets</h3>
+      <span class="demo-label">.column-offset-25 + .column-50</span>
+      <div class="row grid-demo-row">
+        <div class="column column-offset-25 column-50"><div class="demo-box-blue">Centred with a 25% left offset</div></div>
+      </div>
+
+      <h3>Vertical Alignment</h3>
+      <span class="demo-label">.row.row-top</span>
+      <div class="row row-top grid-demo-row" style="gap: 1.2rem;">
+        <div class="column"><div class="demo-box short-box">Short column</div></div>
+        <div class="column"><div class="demo-box tall-box">Tall column<br>(row-top aligns to top)</div></div>
+        <div class="column"><div class="demo-box short-box">Short column</div></div>
+      </div>
+
+      <span class="demo-label">.row.row-center</span>
+      <div class="row row-center grid-demo-row" style="gap: 1.2rem;">
+        <div class="column"><div class="demo-box short-box">Short column</div></div>
+        <div class="column"><div class="demo-box tall-box">Tall column<br>(row-center aligns to middle)</div></div>
+        <div class="column"><div class="demo-box short-box">Short column</div></div>
+      </div>
+
+      <span class="demo-label">.row.row-bottom</span>
+      <div class="row row-bottom grid-demo-row" style="gap: 1.2rem;">
+        <div class="column"><div class="demo-box short-box">Short column</div></div>
+        <div class="column"><div class="demo-box tall-box">Tall column<br>(row-bottom aligns to bottom)</div></div>
+        <div class="column"><div class="demo-box short-box">Short column</div></div>
+      </div>
+
+      <h3>Wrapper</h3>
+      <p><code>.wrapper</code> is the main page container. It centres content, sets a <code>max-width</code> of <code>1440px</code>, and applies <code>$space-5</code> horizontal padding. All demo sections on this page use <code>.wrapper</code>.</p>
+    </section>
+
+    <!-- SECTION: CSS GRID -->
+    <section class="demo-section" id="css-grid">
+      <h2>CSS Grid</h2>
+      <p>ZelfCSS provides lightweight CSS Grid helpers via <code>.grid</code> variants. Use <code>.grid-2</code>, <code>.grid-3</code>, or <code>.grid-4</code> for fixed column counts, or <code>.grid-auto</code> for auto-fill responsive columns.</p>
+
+      <h3>Two-Column Grid (.grid-2)</h3>
+      <div class="grid grid-2" style="gap: 1.2rem; margin-bottom: 2.4rem;">
+        <div class="demo-box">Item 1</div>
+        <div class="demo-box">Item 2</div>
+        <div class="demo-box">Item 3</div>
+        <div class="demo-box">Item 4</div>
+      </div>
+
+      <h3>Three-Column Grid (.grid-3)</h3>
+      <div class="grid grid-3" style="gap: 1.2rem; margin-bottom: 2.4rem;">
+        <div class="demo-box">Item 1</div>
+        <div class="demo-box">Item 2</div>
+        <div class="demo-box">Item 3</div>
+        <div class="demo-box">Item 4</div>
+        <div class="demo-box">Item 5</div>
+        <div class="demo-box">Item 6</div>
+      </div>
+
+      <h3>Four-Column Grid (.grid-4)</h3>
+      <div class="grid grid-4" style="gap: 1.2rem; margin-bottom: 2.4rem;">
+        <div class="demo-box">Item 1</div>
+        <div class="demo-box">Item 2</div>
+        <div class="demo-box">Item 3</div>
+        <div class="demo-box">Item 4</div>
+        <div class="demo-box">Item 5</div>
+        <div class="demo-box">Item 6</div>
+        <div class="demo-box">Item 7</div>
+        <div class="demo-box">Item 8</div>
+      </div>
+
+      <h3>Auto-Fill Grid (.grid-auto)</h3>
+      <p><code>.grid-auto</code> uses <code>auto-fill</code> with a minimum column width, so columns reflow responsively without breakpoint classes.</p>
+      <div class="grid grid-auto" style="gap: 1.2rem; margin-bottom: 2.4rem;">
+        <div class="demo-box">Auto 1</div>
+        <div class="demo-box">Auto 2</div>
+        <div class="demo-box">Auto 3</div>
+        <div class="demo-box">Auto 4</div>
+        <div class="demo-box">Auto 5</div>
+        <div class="demo-box">Auto 6</div>
+      </div>
+
+      <h3>Spanning Helpers (.col-span-2, .col-full)</h3>
+      <span class="demo-label">.grid-3 with .col-span-2 and .col-full</span>
+      <div class="grid grid-3" style="gap: 1.2rem; margin-bottom: 2.4rem;">
+        <div class="demo-box col-span-2" style="background:#dbeafe; color:#1d4ed8;">.col-span-2</div>
+        <div class="demo-box">Item</div>
+        <div class="demo-box">Item</div>
+        <div class="demo-box">Item</div>
+        <div class="demo-box">Item</div>
+        <div class="demo-box col-full" style="background:#dcfce7; color:#15803d;">.col-full — spans all columns</div>
+      </div>
+    </section>
+
+    <!-- SECTION: FORMS -->
+    <section class="demo-section" id="forms">
+      <h2>Forms</h2>
+      <p>All form elements are full-width by default. Labels and legends use bold weight. Inputs, selects, and textareas share a consistent border, focus ring, and height. Fieldsets strip their native border and padding.</p>
+
+      <h3>CPD Event Registration</h3>
+      <form>
+        <fieldset>
+          <legend>Personal Details</legend>
+          <label for="full-name">Full name</label>
+          <input type="text" id="full-name" name="full-name" placeholder="Dr Jane Dlamini">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="jane.dlamini@hospital.co.za">
+          <label for="tel">Contact number</label>
+          <input type="tel" id="tel" name="tel" placeholder="+27 11 000 0000">
+          <label for="password">Create a password</label>
+          <input type="password" id="password" name="password" placeholder="Minimum 8 characters">
+          <label for="years">Years in practice</label>
+          <input type="number" id="years" name="years" placeholder="e.g. 12" min="0" max="60">
+          <label for="dob">Date of birth</label>
+          <input type="date" id="dob" name="dob">
+          <label for="linkedin">LinkedIn profile (optional)</label>
+          <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/yourprofile">
+        </fieldset>
+
+        <fieldset>
+          <legend>Event Preferences</legend>
+          <label for="cpd-category">CPD category</label>
+          <select id="cpd-category" name="cpd-category">
+            <option value="">— Select a category —</option>
+            <option value="clinical">Clinical</option>
+            <option value="ethical">Ethical</option>
+            <option value="management">Management</option>
+          </select>
+          <label for="topics">Topics of interest (select all that apply)</label>
+          <select id="topics" name="topics" multiple>
+            <option value="cardiology">Cardiology</option>
+            <option value="oncology">Oncology</option>
+            <option value="neurology">Neurology</option>
+            <option value="paediatrics">Paediatrics</option>
+            <option value="gp">General Practice</option>
+            <option value="mental-health">Mental Health</option>
+          </select>
+          <label for="dietary">Dietary requirements or accessibility needs</label>
+          <textarea id="dietary" name="dietary" rows="4" placeholder="Please let us know if you have any special requirements."></textarea>
+          <label for="badge-colour">Preferred name badge colour</label>
+          <input type="color" id="badge-colour" name="badge-colour" value="#2563eb">
+        </fieldset>
+
+        <fieldset>
+          <legend>Attendance</legend>
           <fieldset>
-            <legend>Contact details</legend>
-
-            <label for="name">Full name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Jane Smith"
-            />
-
-            <label for="email">Email address</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="jane@example.com"
-            />
-
-            <label for="specialty">Specialty</label>
-            <select id="specialty" name="specialty">
-              <option value="">— Select —</option>
-              <option value="gp">General Practice</option>
-              <option value="paeds">Paediatrics</option>
-              <option value="onco">Oncology</option>
-              <option value="cardio">Cardiology</option>
-            </select>
-
-            <label for="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Your message here…"
-              rows="5"
-            ></textarea>
-
+            <legend>Attendance format</legend>
             <label>
-              <input type="checkbox" name="newsletter" />
-              Subscribe to the newsletter
-            </label>
-
-            <label>
-              <input type="radio" name="contact_method" value="email" checked />
-              Contact me by email
+              <input type="radio" name="attendance" value="in-person">
+              In person (Sandton Convention Centre)
             </label>
             <label>
-              <input type="radio" name="contact_method" value="phone" />
-              Contact me by phone
+              <input type="radio" name="attendance" value="virtual">
+              Virtual (Zoom link sent on registration)
             </label>
-
-            <input type="submit" value="Submit" />
+            <label>
+              <input type="radio" name="attendance" value="hybrid">
+              Hybrid (attend in person, recording access for 30 days)
+            </label>
           </fieldset>
-        </form>
-      </section>
 
-      <!-- ============================================================
-           Tables
-      ============================================================ -->
-      <section class="demo-section" id="tables">
-        <h2>Tables</h2>
+          <fieldset>
+            <legend>Session preferences</legend>
+            <label>
+              <input type="checkbox" name="session" value="morning">
+              Morning session (08:00–12:00)
+            </label>
+            <label>
+              <input type="checkbox" name="session" value="afternoon">
+              Afternoon session (13:00–17:00)
+            </label>
+            <label>
+              <input type="checkbox" name="session" value="workshop">
+              Hands-on workshop (additional R500 — limited seats)
+            </label>
+          </fieldset>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Framework</th>
-              <th>Size (gzipped)</th>
-              <th>Utility classes</th>
-              <th>IE support</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>ZelfCSS</td>
-              <td>~3 KB</td>
-              <td>Minimal (intentional)</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Milligram</td>
-              <td>~2 KB</td>
-              <td>None</td>
-              <td>Partial</td>
-            </tr>
-            <tr>
-              <td>Bootstrap</td>
-              <td>~23 KB</td>
-              <td>Extensive</td>
-              <td>Partial</td>
-            </tr>
-            <tr>
-              <td>Tailwind CSS</td>
-              <td>Variable</td>
-              <td>Exhaustive</td>
-              <td>No</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+          <label>
+            <input type="checkbox" name="hpcsa-consent" value="yes">
+            I confirm I am a registered HPCSA practitioner and consent to my attendance being recorded for CPD purposes.
+          </label>
 
-      <!-- ============================================================
-           Grid
-      ============================================================ -->
-      <section class="demo-section" id="grid">
-        <h2>Grid</h2>
+          <label for="search-colleague">Search for a colleague to share your registration with</label>
+          <input type="search" id="search-colleague" name="search-colleague" placeholder="Search by name or HPCSA number">
 
-        <p>The grid uses CSS <code>gap</code> — no negative margin hacks.</p>
+          <label for="renewal-month">Month of HPCSA registration renewal</label>
+          <input type="month" id="renewal-month" name="renewal-month">
 
-        <h3>Two-column layout</h3>
-        <div class="row">
-          <div class="column">
-            <p style="background:#f5f5f5; padding:1.6rem;">
-              <strong>Column one.</strong> Half of the available width on wider
-              screens, full width on small screens.
-            </p>
-          </div>
-          <div class="column">
-            <p style="background:#f5f5f5; padding:1.6rem;">
-              <strong>Column two.</strong> Both columns share equal width with a
-              <code>gap</code> between them instead of a margin trick.
-            </p>
-          </div>
-        </div>
+          <label for="contact-week">Preferred contact week</label>
+          <input type="week" id="contact-week" name="contact-week">
+        </fieldset>
 
-        <h3>Three-column layout</h3>
-        <div class="row">
-          <div class="column">
-            <p style="background:#f5f5f5; padding:1.6rem;">
-              <strong>One</strong> — one third
-            </p>
-          </div>
-          <div class="column">
-            <p style="background:#f5f5f5; padding:1.6rem;">
-              <strong>Two</strong> — one third
-            </p>
-          </div>
-          <div class="column">
-            <p style="background:#f5f5f5; padding:1.6rem;">
-              <strong>Three</strong> — one third
-            </p>
-          </div>
-        </div>
+        <input type="submit" value="Register for CPD Event">
+        <input type="reset" value="Clear form" style="margin-left: 1rem;">
+      </form>
+    </section>
 
-        <h3>Mixed widths</h3>
-        <div class="row">
-          <div class="column column-75">
-            <p style="background:#f5f5f5; padding:1.6rem;">
-              <strong>75%</strong> — main content area
-            </p>
-          </div>
-          <div class="column column-25">
-            <p style="background:#f5f5f5; padding:1.6rem;">
-              <strong>25%</strong> — sidebar
-            </p>
-          </div>
-        </div>
-      </section>
+    <!-- SECTION: TABLES -->
+    <section class="demo-section" id="tables">
+      <h2>Tables</h2>
+      <p>Tables are full-width by default, with bottom borders on every cell for legibility. On screens below 640px, the table scrolls horizontally to preserve column widths. First and last columns lose their left/right padding to stay flush with the wrapper.</p>
 
-      <!-- ============================================================
-           Components
-      ============================================================ -->
-      <section class="demo-section" id="components">
-        <h2>Components</h2>
+      <h3>CPD Attendance Report — Cardiology Update 2026</h3>
+      <table>
+        <caption>Attendance data exported from WebinarJam. CPD awarded to registrants who watched ≥75% of the session.</caption>
+        <thead>
+          <tr>
+            <th>Registrant</th>
+            <th>HPCSA Number</th>
+            <th>Speciality</th>
+            <th>Attended</th>
+            <th>Duration Watched</th>
+            <th>CPD Awarded</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dr J. Dlamini</td>
+            <td>MP 0234567</td>
+            <td>Cardiology</td>
+            <td>Yes</td>
+            <td>58 min / 75 min</td>
+            <td>&#10003; 1 Clinical</td>
+          </tr>
+          <tr>
+            <td>Dr A. Nkosi</td>
+            <td>MP 0198432</td>
+            <td>General Practice</td>
+            <td>Yes</td>
+            <td>48 min / 75 min</td>
+            <td>&#10007; Below 75%</td>
+          </tr>
+          <tr>
+            <td>Dr P. van Wyk</td>
+            <td>MP 0312890</td>
+            <td>Internal Medicine</td>
+            <td>Yes</td>
+            <td>75 min / 75 min</td>
+            <td>&#10003; 1 Clinical</td>
+          </tr>
+          <tr>
+            <td>Dr C. Pretorius</td>
+            <td>MP 0401234</td>
+            <td>Cardiology</td>
+            <td>No</td>
+            <td>0 min / 75 min</td>
+            <td>&#10007; Did not attend</td>
+          </tr>
+          <tr>
+            <td>Dr S. Maharaj</td>
+            <td>MP 0287643</td>
+            <td>Neurology</td>
+            <td>Yes</td>
+            <td>62 min / 75 min</td>
+            <td>&#10003; 1 Clinical</td>
+          </tr>
+          <tr>
+            <td>Dr L. Botha</td>
+            <td>MP 0356721</td>
+            <td>Paediatrics</td>
+            <td>Yes</td>
+            <td>70 min / 75 min</td>
+            <td>&#10003; 1 Clinical</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-        <h3>Links</h3>
-        <p>
-          <a href="#">Standard link</a> — underlined by default for
-          accessibility. ZelfCSS does not hide link underlines.
-        </p>
+    <!-- SECTION: LISTS -->
+    <section class="demo-section" id="lists">
+      <h2>Lists</h2>
 
-        <h3>Blockquote</h3>
-        <blockquote>
-          "The best frameworks get out of your way."
-          <cite>— Someone sensible</cite>
-        </blockquote>
+      <h3>Unordered List</h3>
+      <p>Displayed with <code>circle</code> bullets inside the content flow.</p>
+      <ul>
+        <li>Styles standard HTML elements directly — no class names needed for most elements</li>
+        <li>Accessibility-first: WCAG 2.2 AA compliant focus states throughout</li>
+        <li>Semantic colour tokens — change one token, update the whole framework</li>
+        <li>Uses <code>text-wrap: pretty</code> on paragraphs to prevent orphaned words</li>
+        <li>Uses <code>text-wrap: balance</code> on headings for even line breaks</li>
+        <li>CSS <code>gap</code> for gutters — no negative-margin hacks</li>
+      </ul>
 
-        <h3>Alerts</h3>
-        <div class="alert alert-success" role="alert">
-          <strong>Success:</strong> Your changes have been saved.
-        </div>
-        <div class="alert alert-info" role="alert">
-          <strong>Info:</strong> ZelfCSS outputs both an expanded and a minified CSS file.
-        </div>
-        <div class="alert alert-warning" role="alert">
-          <strong>Warning:</strong> Breaking changes are documented in the <a href="changelog.md">changelog</a>.
-        </div>
-        <div class="alert alert-danger" role="alert">
-          <strong>Error:</strong> The form could not be submitted. Please check the fields above.
-        </div>
+      <h3>Ordered List</h3>
+      <p>Decimal, inside. Useful for step-by-step instructions.</p>
+      <ol>
+        <li>Install via npm: <code>npm install zelfcss</code></li>
+        <li>Link the stylesheet in your <code>&lt;head&gt;</code>: <code>&lt;link rel="stylesheet" href="dist/zelfcss.min.css"&gt;</code></li>
+        <li>Write standard HTML — ZelfCSS styles it directly</li>
+        <li>Add <code>.wrapper</code> to centre your content</li>
+        <li>Use <code>.row</code> and <code>.column</code> for flexbox layouts</li>
+        <li>Use <code>.grid-2</code>, <code>.grid-3</code>, or <code>.grid-4</code> for CSS Grid layouts</li>
+      </ol>
 
-        <h3>Accessible hidden content</h3>
-        <p>
-          Use <code>.sr-only</code> or <code>.visually-hidden</code> to hide
-          content visually while keeping it available to screen readers:
-        </p>
-        <pre><code>&lt;span class="sr-only"&gt;Skip to main content&lt;/span&gt;</code></pre>
+      <h3>Nested List</h3>
+      <p>Nested lists reduce font size to 90% and indent 30px.</p>
+      <ul>
+        <li>Grid system
+          <ul>
+            <li>Flexbox grid (<code>.row</code> / <code>.column</code>)
+              <ul>
+                <li>Equal columns</li>
+                <li>Explicit percentage widths</li>
+                <li>Column offsets</li>
+                <li>Vertical alignment helpers</li>
+              </ul>
+            </li>
+            <li>CSS Grid (<code>.grid</code>, <code>.grid-2</code>, <code>.grid-3</code>, <code>.grid-4</code>, <code>.grid-auto</code>)</li>
+          </ul>
+        </li>
+        <li>Typography
+          <ul>
+            <li>Headings (h1–h6)</li>
+            <li>Body text with <code>text-wrap: pretty</code></li>
+            <li>Bold and strong</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
 
-        <h3>Display helpers</h3>
-        <pre><code>.d-none   { display: none }
-.d-block  { display: block }
-.d-flex   { display: flex }</code></pre>
+    <!-- SECTION: CODE -->
+    <section class="demo-section" id="code">
+      <h2>Code</h2>
+      <p>Inline code has a light grey background, rounded corners, and a slight size reduction. Block code (<code>&lt;pre&gt;&lt;code&gt;</code>) adds a left border in the interactive colour and allows horizontal scrolling for long lines.</p>
 
-        <h3>Text alignment</h3>
-        <p class="text-left">Left-aligned text (<code>.text-left</code>)</p>
-        <p class="text-center">Centred text (<code>.text-center</code>)</p>
-        <p class="text-right">Right-aligned text (<code>.text-right</code>)</p>
-      </section>
+      <h3>Inline Code</h3>
+      <p>Use the <code>.wrapper</code> class to centre content. Set <code>max-width: 144rem</code> and <code>padding: 0 $space-5</code> for consistent horizontal spacing. The <code>$space-5</code> token equals <code>2.4rem</code> (24px).</p>
 
-    </main>
+      <h3>Code Block</h3>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;My ZelfCSS Page&lt;/title&gt;
+    &lt;link rel="stylesheet" href="dist/zelfcss.min.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="wrapper"&gt;
+      &lt;h1&gt;Hello, ZelfCSS&lt;/h1&gt;
+      &lt;p&gt;A minimalist CSS framework that gets out of your way.&lt;/p&gt;
 
-    <footer class="demo-footer">
-      <p>
-        ZelfCSS — a minimalist CSS framework forked from
-        <a href="https://milligram.io/">Milligram</a> by
-        <a href="https://github.com/cjpatoilo">CJ Patoilo</a>, extended by
-        <a href="https://github.com/rvh-zelf">X.R. Galdur</a>.
-        Licensed under the <a href="license">MIT License</a>.
+      &lt;div class="row"&gt;
+        &lt;div class="column"&gt;One&lt;/div&gt;
+        &lt;div class="column"&gt;Two&lt;/div&gt;
+        &lt;div class="column"&gt;Three&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <p>Override ZelfCSS tokens in SCSS before import:</p>
+<pre><code>// Override ZelfCSS tokens before import
+$color-interactive: #e11d48;        // rose — replace default blue
+$color-interactive-hover: #be123c;
+$font-family-base: 'Inter', system-ui, sans-serif;
+
+@import 'zelfcss/src/milligram';</code></pre>
+    </section>
+
+    <!-- SECTION: BLOCKQUOTE -->
+    <section class="demo-section" id="blockquote">
+      <h2>Blockquote</h2>
+      <p>Blockquotes use a coloured left border and internal padding. The last child element inside has its bottom margin removed.</p>
+
+      <blockquote>
+        <p>Good design is as little design as possible. Less, but better — because it concentrates on the essential aspects, and the products are not burdened with non-essentials. Back to purity, back to simplicity.</p>
+        <p>— Dieter Rams</p>
+      </blockquote>
+
+      <blockquote>
+        <p>The Web is not a platform. It is a medium. The difference matters: a platform constrains what you can build; a medium amplifies what you already know how to make.</p>
+        <p>Write standard HTML. Style it once. Ship it everywhere.</p>
+      </blockquote>
+
+      <h3>Horizontal Rule</h3>
+      <p>ZelfCSS strips the native <code>&lt;hr&gt;</code> border and replaces it with a clean 1px top border using <code>$color-grey-lightest</code>. The margin is <code>3.0rem</code> top and bottom.</p>
+      <hr>
+      <p>The rule above uses no class names — just a standard <code>&lt;hr&gt;</code> element. It works as a content divider anywhere in the flow.</p>
+    </section>
+
+    <!-- SECTION: ALERTS -->
+    <section class="demo-section" id="alerts">
+      <h2>Alerts</h2>
+      <p>Alerts use a 10% tint of the semantic colour for both background and border, with the full colour applied to text. The <code>.alert</code> base class handles layout and spacing; modifier classes apply the colour variant.</p>
+
+      <div class="alert">
+        <strong>Note:</strong> Your registration details have been saved as a draft. Complete payment to confirm your CPD event booking.
+      </div>
+
+      <div class="alert alert-success">
+        <strong>Registration confirmed.</strong> You are registered for the Cardiology Update 2026 webinar. A confirmation email has been sent to jane.dlamini@hospital.co.za.
+      </div>
+
+      <div class="alert alert-info">
+        <strong>CPD processing in progress.</strong> HPCSA submission for the February 2026 webinar series is scheduled for 14 March 2026. You will receive a confirmation once submitted.
+      </div>
+
+      <div class="alert alert-warning">
+        <strong>Attendance below threshold.</strong> You watched 48 of 75 minutes of the session (64%). A minimum of 75% attendance is required to earn the CPD point for this webinar.
+      </div>
+
+      <div class="alert alert-danger">
+        <strong>HPCSA number not found.</strong> The number MP 0000000 does not match any record in the HPCSA register. Please check the number and try again, or contact support.
+      </div>
+    </section>
+
+    <!-- SECTION: UTILITIES -->
+    <section class="demo-section" id="utilities">
+      <h2>Utility Classes</h2>
+      <p>ZelfCSS ships a minimal utility layer. No utility soup — just the essential toggles a minimalist framework actually needs.</p>
+
+      <h3>Visually Hidden (<code>.sr-only</code> / <code>.visually-hidden</code>)</h3>
+      <p><code>.sr-only</code> and <code>.visually-hidden</code> are aliases. Both hide content visually while keeping it accessible to screen readers — useful for icon-only buttons, skip-navigation links, and supplementary context labels.</p>
+      <button>
+        <span aria-hidden="true">&#10006;</span>
+        <span class="sr-only">Close dialog</span>
+      </button>
+      <p style="font-size: 1.3rem; color: #a1a1a9; margin-top: 0.8rem;">Inspect the button above — the "Close dialog" text is in the DOM but invisible. Screen readers will announce it.</p>
+
+      <h3>Text Alignment</h3>
+      <div class="text-align-demo">
+        <p class="text-left">Left-aligned text — the default for body content. Reads naturally in left-to-right languages.</p>
+      </div>
+      <div class="text-align-demo">
+        <p class="text-center">Centre-aligned text — use sparingly; best for short headings, labels, or call-to-action copy.</p>
+      </div>
+      <div class="text-align-demo">
+        <p class="text-right">Right-aligned text — useful for numerical data in tables or right-side UI elements.</p>
+      </div>
+
+      <h3>Display Helpers</h3>
+      <p><code>.d-none</code> — element exists in DOM but is invisible:</p>
+      <span class="d-none">This text is hidden with .d-none (display: none)</span>
+      <p style="color: #a1a1a9; font-size: 1.3rem;">(A <code>span.d-none</code> element is here — check the source.)</p>
+
+      <p><code>.d-block</code> — forces block display on inline elements:</p>
+      <span class="d-block" style="background: #f4f5f6; padding: 1.2rem; border-radius: 4px; margin-bottom: 1.6rem;">This span is block-level with .d-block</span>
+
+      <p><code>.d-flex</code> — flexbox container:</p>
+      <div class="d-flex" style="gap: 1.6rem; background: #f4f5f6; padding: 1.2rem; border-radius: 4px; margin-bottom: 1.6rem;">
+        <span style="background: #e5e7eb; padding: 0.8rem 1.6rem; border-radius: 4px;">Flex child 1</span>
+        <span style="background: #e5e7eb; padding: 0.8rem 1.6rem; border-radius: 4px;">Flex child 2</span>
+        <span style="background: #e5e7eb; padding: 0.8rem 1.6rem; border-radius: 4px;">Flex child 3</span>
+      </div>
+
+      <h3>Float Helpers (Legacy)</h3>
+      <p><code>.float-left</code> and <code>.float-right</code> are included for legacy use cases. Prefer flexbox or CSS Grid for layout.</p>
+      <div style="overflow: hidden; background: #f4f5f6; padding: 1.6rem; border-radius: 4px;">
+        <img class="float-left" src="https://placehold.co/120x80/e5e7eb/52525b?text=Image" alt="Floated image" width="120" height="80" style="margin: 0 1.6rem 1.6rem 0;">
+        <p>This paragraph wraps around the floated image to the right. Float-based layout was the standard approach before flexbox. ZelfCSS includes <code>.float-left</code> and <code>.float-right</code> for backward compatibility — use <code>.row</code>/<code>.column</code> for new layouts.</p>
+      </div>
+    </section>
+
+    <!-- SECTION: SPACING TOKENS -->
+    <section class="demo-section" id="spacing">
+      <h2>Spacing Tokens</h2>
+      <p>ZelfCSS uses an 8px base spacing scale. Tokens run from <code>$space-1</code> (4px) to <code>$space-8</code> (64px). These values drive internal spacing in the framework — use them as reference when writing component or page-level CSS.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+            <th>px</th>
+            <th>Visual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>$space-1</code></td>
+            <td>0.4rem</td>
+            <td>4px</td>
+            <td><div class="spacing-bar" style="width: 4px;"></div></td>
+          </tr>
+          <tr>
+            <td><code>$space-2</code></td>
+            <td>0.8rem</td>
+            <td>8px</td>
+            <td><div class="spacing-bar" style="width: 8px;"></div></td>
+          </tr>
+          <tr>
+            <td><code>$space-3</code></td>
+            <td>1.2rem</td>
+            <td>12px</td>
+            <td><div class="spacing-bar" style="width: 12px;"></div></td>
+          </tr>
+          <tr>
+            <td><code>$space-4</code></td>
+            <td>1.6rem</td>
+            <td>16px</td>
+            <td><div class="spacing-bar" style="width: 16px;"></div></td>
+          </tr>
+          <tr>
+            <td><code>$space-5</code></td>
+            <td>2.4rem</td>
+            <td>24px</td>
+            <td><div class="spacing-bar" style="width: 24px;"></div></td>
+          </tr>
+          <tr>
+            <td><code>$space-6</code></td>
+            <td>3.2rem</td>
+            <td>32px</td>
+            <td><div class="spacing-bar" style="width: 32px;"></div></td>
+          </tr>
+          <tr>
+            <td><code>$space-7</code></td>
+            <td>4.8rem</td>
+            <td>48px</td>
+            <td><div class="spacing-bar" style="width: 48px;"></div></td>
+          </tr>
+          <tr>
+            <td><code>$space-8</code></td>
+            <td>6.4rem</td>
+            <td>64px</td>
+            <td><div class="spacing-bar" style="width: 64px;"></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div><!-- /.wrapper -->
+
+  <!-- FOOTER -->
+  <footer class="demo-footer">
+    <div class="wrapper">
+      <p class="footer-brand">ZelfCSS</p>
+      <p>A minimalist CSS framework — forked and modernised from Milligram.</p>
+      <p>Based on <a href="https://milligram.io/" target="_blank" rel="noopener">Milligram</a> by CJ Patoilo &middot; Built by Ruan van Heerden &middot; <a href="license">MIT Licence</a></p>
+      <p style="margin-top: 1.6rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a class="button button-clear" href="https://github.com/rvh-zelf/ZelfCSS" target="_blank" rel="noopener" style="color: #e5e7eb; border-color: transparent;">GitHub</a>
+        <a class="button button-clear" href="dist/zelfcss.min.css" style="color: #e5e7eb; border-color: transparent;">Download CSS</a>
+        <a class="button button-clear" href="https://github.com/rvh-zelf/ZelfCSS/issues" target="_blank" rel="noopener" style="color: #e5e7eb; border-color: transparent;">Report an issue</a>
       </p>
-    </footer>
+      <p class="footer-small">This page demonstrates the full ZelfCSS feature set. All HTML elements are styled solely by <code style="background: #27272a; color: #e5e7eb;">dist/zelfcss.min.css</code> plus minimal demo-only overrides for coloured swatch boxes, grid demo boxes, and section padding. No other CSS framework is used.</p>
+    </div>
+  </footer>
 
-  </body>
+</body>
 </html>

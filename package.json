@@ -5,7 +5,7 @@
   "homepage": "https://github.com/rvh-zelf/ZelfCSS",
   "repository": "rvh-zelf/ZelfCSS",
   "license": "MIT",
-  "author": "X.R. Galdur",
+  "author": "Ruan van Heerden",
   "main": "dist/zelfcss.css",
   "keywords": [
     "bootstrap",
@@ -53,7 +53,7 @@
     "build": "rimraf dist && run-s sass autoprefixer banner",
     "lint": "prettier-standard --check && sass-lint --verbose --no-exit",
     "prepublishOnly": "npm run build",
-    "sass": "sass --style=expanded src/milligram.sass dist/milligram.css && sass --style=compressed src/milligram.sass dist/milligram.min.css",
+    "sass": "sass --style=expanded src/milligram.sass dist/zelfcss.css && sass --style=compressed src/milligram.sass dist/zelfcss.min.css",
     "serve": "browser-sync start --no-notify -s test --ss dist -f dist",
     "start": "run-p build watch serve",
     "test": "npm run build && nyc ava",
