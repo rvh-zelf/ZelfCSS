@@ -23,6 +23,7 @@ body {
   letter-spacing: 0.01em;
   line-height: 1.6;
   overflow-wrap: break-word;
+  text-rendering: optimizeLegibility;
 }
 
 @media print {
